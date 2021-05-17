@@ -1,0 +1,6 @@
+sudo sh -c 'echo deb https://apt.buildkite.com/buildkite-agent stable main > /etc/apt/sources.list.d/buildkite-agent.list'
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 32A37959C2FA5C3C99EFBC32A79206696452D198
+sudo apt-get update && sudo apt-get install -y buildkite-agent
+sudo sed -i "s/xxx/23197a9de63c4f4b1e185ec7991df9eef1a53e78a4af945edc/g" /etc/buildkite-agent/buildkite-agent.cfg
+sudo systemctl enable buildkite-agent && sudo systemctl start buildkite-agent
+journalctl -f -u buildkite-agent
